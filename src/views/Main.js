@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PokemonCard from '../components/PokeCard/PokeCard';
 import { fetchPokedex } from '../services/pokemon';
+import PokeCard from '../components/PokeCard/PokeCard';
 
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
@@ -16,11 +18,7 @@ export default function Main() {
   return (
     <div>
       {pokemon.map((individual) => (
-        <div key={individual.id}>
-          <p>
-            {individual.pokemon} ({individual.type_1}, {individual.type_2})
-          </p>
-        </div>
+        <PokeCard key={individual.id} {...individual}/>
       ))}
     </div>
   );
