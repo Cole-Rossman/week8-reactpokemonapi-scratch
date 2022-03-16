@@ -7,6 +7,7 @@ export default function Main() {
   useEffect(() => {
     const fetchData = async () => {
       const pokemonList = await fetchPokedex();
+      console.log(pokemonList);
       setPokemon(pokemonList);
     };
     fetchData();
