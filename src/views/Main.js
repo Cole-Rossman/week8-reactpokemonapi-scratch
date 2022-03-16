@@ -13,6 +13,14 @@ export default function Main() {
   }, []);
 
   return (
-    <div>Hello</div>
+    <div>
+      {pokemon.map((individual) => (
+        <div key={individual.id}>
+          <p>
+            {individual.pokemon} ({individual.type_1}, {individual.type_2})
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }
