@@ -6,6 +6,7 @@ import PokeCard from '../components/PokeCard/PokeCard';
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
   const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState([]);
  
   useEffect(() => {
     const fetchData = async () => {
