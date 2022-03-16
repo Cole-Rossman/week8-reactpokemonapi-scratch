@@ -1,6 +1,6 @@
 import './App.css';
 import Main from './views/Main';
-import { fetchPokedex } from './services/pokemon';
+
 
 function App() {
   return (
