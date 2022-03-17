@@ -10,10 +10,10 @@ export async function fetchTypes() {
   return data.map((item) => item.type);
 }
 
-export async function fetchFilteredPokemon(type, search) {
+export async function fetchFilteredPokemon(selectedType, search) {
   const params = new URLSearchParams();
-  if (type !== 'All') {
-    params.set('type', type);}
+  if (selectedType !== 'All') {
+    params.set('type', selectedType);}
   if (search) {
     params.set('pokemon', search);
   }
