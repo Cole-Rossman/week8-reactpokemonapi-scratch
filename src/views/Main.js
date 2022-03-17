@@ -21,7 +21,12 @@ export default function Main() {
       setTypes(typesData);
       const data = await fetchFilteredPokemon(selectedType);
       setPokemon(data);
-      setLoading(false);
+      const loadingTimeout = setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      return () => {
+        clearTimeout(loadingTimeout);
+      };
     };
     fetchData();
   }, [selectedType]);
