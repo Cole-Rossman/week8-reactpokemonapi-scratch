@@ -4,6 +4,7 @@ import { fetchPokedex, fetchTypes, fetchFilteredPokemon } from '../services/poke
 import PokeCard from '../components/PokeCard/PokeCard';
 import TypeDropdown from '../components/controls/TypeDropdown/TypeDropdown';
 import SearchBar from '../components/controls/SearchBar/SearchBar';
+import Sort from '../components/controls/Sort/Sort';
 
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
@@ -11,6 +12,9 @@ export default function Main() {
   const [selectedType, setSelectedType] = useState('All');
   const [loading, setLoading] = useState([]);
   const [search, setSearch] = useState('');
+  const [option, setOption] = useState('A-Z');
+
+  const options = ['A-Z', 'Z-A'];
  
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +48,7 @@ export default function Main() {
   return (
     <div className='main'>
       <TypeDropdown types={types} selectedType={selectedType} setSelectedType={setSelectedType} /> 
+      <Sort options={options} option={option} callback={setOption} />
       <SearchBar query={search} setQuery={setSearch} callback={searchPokemon} />
       <div className='pokemon-list'>
         {pokemon.map((individual) => (
