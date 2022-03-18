@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import './Main.css';
 import { fetchPokedex, fetchTypes, fetchFilteredPokemon } from '../services/pokemon';
 import PokeCard from '../components/PokeCard/PokeCard';
-import TypeDropdown from '../components/controls/TypeDropdown';
-import SearchBar from '../components/SearchBar/SearchBar';
+import TypeDropdown from '../components/controls/TypeDropdown/TypeDropdown';
+import SearchBar from '../components/controls/SearchBar/SearchBar';
 
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
@@ -41,12 +42,15 @@ export default function Main() {
   if (loading) return <span className='loading'>Loading...</span>;
 
   return (
-    <div>
+    <div className='main'>
       <TypeDropdown types={types} selectedType={selectedType} setSelectedType={setSelectedType} /> 
       <SearchBar query={search} setQuery={setSearch} callback={searchPokemon} />
-      {pokemon.map((individual) => (
-        <PokeCard key={individual.id} {...individual}/>
-      ))}
+      <div className='pokemon-list'>
+        {pokemon.map((individual) => (
+          <PokeCard key={individual.id} {...individual}/>
+        ))}
+      </div>
     </div>
+      
   );
 }

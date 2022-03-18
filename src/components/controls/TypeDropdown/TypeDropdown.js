@@ -1,4 +1,5 @@
 import React from 'react';
+import './TypeDropdown.css';
 
 export default function TypeDropdown({ types, selectedType, setSelectedType }) {
   return (
