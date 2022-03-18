@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Main.css';
-import { fetchPokedex, fetchTypes, fetchFilteredPokemon } from '../services/pokemon';
+import { fetchPokedex, fetchTypes, fetchFilteredPokemon, fetchSortedPokemon } from '../services/pokemon';
 import PokeCard from '../components/PokeCard/PokeCard';
 import TypeDropdown from '../components/controls/TypeDropdown/TypeDropdown';
 import SearchBar from '../components/controls/SearchBar/SearchBar';
@@ -12,9 +12,8 @@ export default function Main() {
   const [selectedType, setSelectedType] = useState('All');
   const [loading, setLoading] = useState([]);
   const [search, setSearch] = useState('');
-  const [option, setOption] = useState('A-Z');
+  const [option, setOption] = useState('');
 
-  const options = ['A-Z', 'Z-A'];
  
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +35,14 @@ export default function Main() {
     fetchData();
   }, [selectedType]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const sorted = await fetchSortedPokemon(option);
+      setPokemon(sorted);
+    };
+    fetchData();
+  }, [option]);
+
 
   const searchPokemon = async () => {
     const searchData = await fetchFilteredPokemon(selectedType, search);
@@ -48,7 +55,7 @@ export default function Main() {
   return (
     <div className='main'>
       <TypeDropdown types={types} selectedType={selectedType} setSelectedType={setSelectedType} /> 
-      <Sort options={options} option={option} callback={setOption} />
+      <Sort option={option} callback={setOption} />
       <SearchBar query={search} setQuery={setSearch} callback={searchPokemon} />
       <div className='pokemon-list'>
         {pokemon.map((individual) => (

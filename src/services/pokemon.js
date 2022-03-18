@@ -21,3 +21,14 @@ export async function fetchFilteredPokemon(selectedType, search) {
   const data = await resp.json();
   return data.results;
 }
+
+export async function fetchSortedPokemon(option) {
+  const params = new URLSearchParams();
+  if (option === 'A-Z') {
+    params.set('asc', option);
+  } 
+  if (option === 'Z-A') { params.set('desc', option);}
+  const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=pokemon&direction=${params.toString()}`);
+  const data = await resp.json();
+  return data.results;
+}
