@@ -24,7 +24,7 @@ export default function Main() {
       setPokemon(data);
       const loadingTimeout = setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 2000);
       return () => {
         clearTimeout(loadingTimeout);
       };
@@ -39,7 +39,7 @@ export default function Main() {
     setSearch('');
   };
 
-  if (loading) return <span className='loading'>Loading...</span>;
+  if (loading) return <span className='loader'></span>;
 
   return (
     <div className='main'>
