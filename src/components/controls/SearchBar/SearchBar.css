@@ -1,0 +1,7 @@
+.search {
+    margin: 15px;
+}
+
+button:hover {
+    background-color: yellowgreen;
+}

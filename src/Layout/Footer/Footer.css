@@ -1,0 +1,11 @@
+footer {
+    color: orange;
+    height: 15px;
+    background-color: darkcyan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
