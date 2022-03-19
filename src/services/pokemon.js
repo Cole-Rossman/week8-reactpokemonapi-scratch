@@ -21,7 +21,6 @@ export async function fetchFilteredPokemon(selectedType, search, option) {
     params.set('direction', 'asc');
   } 
   if (option === 'Z-A') { params.set('direction', 'desc');}
-  console.log(params.toString());
   const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=pokemon&${params.toString()}`);
   const data = await resp.json();
   return data.results;
