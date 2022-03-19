@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Main.css';
-import { fetchPokedex, fetchTypes, fetchFilteredPokemon, fetchSortedPokemon } from '../services/pokemon';
+import { fetchPokedex, fetchTypes, fetchFilteredPokemon } from '../services/pokemon';
 import PokeCard from '../components/PokeCard/PokeCard';
 import TypeDropdown from '../components/controls/TypeDropdown/TypeDropdown';
 import SearchBar from '../components/controls/SearchBar/SearchBar';
@@ -23,7 +23,7 @@ export default function Main() {
       }
       const typesData = await fetchTypes();
       setTypes(typesData);
-      const data = await fetchFilteredPokemon(selectedType);
+      const data = await fetchFilteredPokemon(selectedType, null, option);
       setPokemon(data);
       const loadingTimeout = setTimeout(() => {
         setLoading(false);
@@ -33,19 +33,12 @@ export default function Main() {
       };
     };
     fetchData();
-  }, [selectedType]);
+  }, [selectedType, option]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const sorted = await fetchSortedPokemon(option);
-      setPokemon(sorted);
-    };
-    fetchData();
-  }, [option]);
 
 
   const searchPokemon = async () => {
-    const searchData = await fetchFilteredPokemon(selectedType, search);
+    const searchData = await fetchFilteredPokemon(selectedType, search, option);
     setPokemon(searchData);
     setSearch('');
   };
